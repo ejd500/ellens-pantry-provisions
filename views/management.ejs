@@ -1,0 +1,32 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <h1>Product Management</h1>
+        <div id="management">
+            <% if (success) { %>
+                <div id="success-message">
+                    <%= success %>
+                </div>
+            <% } %>
+            <a href="management/new-product" id="add-new-product">Add New Product</a>
+            
+            <div id="products-content">
+                <% theProducts.forEach(product => { %>
+                    <div class="product-card">
+                        <p><%= product.product_name %></p>
+                        <p>ID: <%= product.product_id %></p>
+                        <p>Quantity: <%= product.quantity_on_hand %></p>
+                        <p>Wholesale Price: $<%= product.wholesale_price %></p>
+                        <p>Retail Price: $<%= product.retail_price%></p>
+                        <p>Profit: $<%= product.profit %></p>
+                        
+                        <button href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Edit</button>
+                        <button href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Delete</button>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+header h1{
+    padding: 40px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+}
+nav a:link{
+    padding: 0px 20px;
+}
+body{
+    padding: 40px 200px;
+}
+body h1{
+    text-align: center;
+    padding: 40px 0px;
+}
+body p{
+    width: 100%;
+    text-align: center;
+}
+footer{
+    padding: 40px 0px;
+    text-align: center;
+}
+#products-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product-card{
+    margin: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+.product-card p{
+    margin: 8px 0px;
+}

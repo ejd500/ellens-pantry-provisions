@@ -1,0 +1,10 @@
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('1241410283', 'Lettuce - Treviso', 83, 3.72, 5.58);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('9431547856', 'Puree - Mocha', 88, 9.51, 14.27);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('0207591369', 'Juice - Apple 284ml', 95, 7.63, 11.45);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('1513880314', 'Burger Veggie', 52, 9.31, 13.97);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('9342595340', 'Spic And Span All Purpose', 25, 6.77, 10.16);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('5159911995', 'Pie Filling - Pumpkin', 23, 2.01, 3.02);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('9988491891', 'Wine - Duboeuf Beaujolais', 59, 5.19, 7.79);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('3598956541', 'Fenngreek Seed', 51, 1.78, 2.67);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('3881761888', 'Seaweed Green Sheets', 44, 2.64, 3.96);
+insert into "products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ('3638765601', 'Lettuce - California Mix', 65, 1.3, 1.95);

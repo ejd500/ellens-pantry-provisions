@@ -33,21 +33,21 @@ var getProducts = function() {
 //   }); 
 // };
 
-// var addLogin = function(username, password, email, uuid) {
-//   if(DEBUG) console.log("logins.pg.dal.addLogin()");
-//   return new Promise(function(resolve, reject) {
-//     const sql = `INSERT INTO public."Logins"(username, password, email, uuid) \
-//         VALUES ($1, $2, $3, $4);`;
-//     dal.query(sql, [username, password, email, uuid], (err, result) => {
-//       if (err) {
-//           if(DEBUG) console.log(err);
-//           reject(err);
-//         } else {
-//           resolve(result.rows);
-//         }
-//     }); 
-//   });
-// };
+var addProduct = function(product_id, product_name, quantity_on_hand, wholesale_price, retail_price) {
+    if(DEBUG) console.log("pg.products.dal.addProduct()");
+    return new Promise(function(resolve, reject) {
+        const sql = `insert into public."products" (product_id, product_name, quantity_on_hand, wholesale_price, retail_price) values ($1, $2, $3, $4, $5)`;
+        dal.query(sql, [product_id, product_name, quantity_on_hand, wholesale_price, retail_price], (err, result) => {
+            if (err) {
+                if(DEBUG) console.log("HELP");
+                reject(err);
+            } else {
+                resolve(result.rows);
+            }
+        }); 
+        });
+  
+};
 
 // var patchLogin = function(id, username, password, email) {
 //   if(DEBUG) console.log("logins.pg.dal.patchLogin()");
@@ -80,7 +80,7 @@ var getProducts = function() {
 module.exports = {
   getProducts,
 //   getLoginByLoginId,
-//   addLogin,
+  addProduct,
 //   patchLogin,
 //   deleteLogin,
 }

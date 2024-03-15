@@ -1,0 +1,27 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <h1>Add a New Product</h1>
+        <form action="/management/new-product" method="POST" id="post-form">
+            <label >Product ID: 
+                <input type="text" id="product_id" name="product_id" value="<%= locals.product_id %>"required>
+            </label>
+            <label>Product Name: 
+                <input type="text" id="product_name" name="product_name" value="<%= locals.product_name %>" required>
+            </label>
+            <label>Quantity:
+                <input type="text" id="quantity_on_hand" name="quantity_on_hand" value="<%= locals.quantity_on_hand %>"required>
+            </label>
+            <label>Wholesale Price: $
+                <input type="text" id="wholesale_price" name="wholesale_price" value="<%= locals.wholesale_price %>"required>
+            </label>
+            <label>Retail Price: $
+                <input type="text" id="retail_price" name="retail_price" value="<%= locals.retail_price %>"required>
+            </label>
+            <button>ADD</button>
+        </form>
+        
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

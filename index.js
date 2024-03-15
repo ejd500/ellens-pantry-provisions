@@ -6,8 +6,8 @@ const PORT = 3000;
 global.DEBUG = true;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-// app.use(express.urlencoded({ extended: true, })); // This is important!
-// app.use(methodOverride('_method')); // So is this!
+app.use(express.urlencoded({ extended: true, })); // This is important!
+app.use(methodOverride('_method')); // So is this!
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
 
 const productsRouter = require('./routes/products')
 app.use('/products', productsRouter);
+
+const managementRouter = require('./routes/management')
+app.use('/management', managementRouter);
+app.use('/new-product', managementRouter);
 
 // // anything beginning with "/api" will go into this
 // const apiRouter = require('./routes/api')

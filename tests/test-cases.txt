@@ -1,0 +1,6 @@
+1. As a customer using Ellen's Pantry Provisions I can see a web page listing all the products from the database.
+2. As a business partner of Ellen's Pantry Provisions I can fetch all the products from the database from a REST API. The records will be returned as json data.
+3. As a staff member of Ellen's Pantry Provisions I can see a web page that will allow me to ADD/INSERT a
+new item to the products of the database.
+4. As a staff member of Ellen's Pantry Provisions I can see a web page that will allow me to UPDATE an existing product of the database.
+5. As a staff member of Ellen's Pantry Provisions I can see a web page that will allow me to DELETE an existing product of the database.

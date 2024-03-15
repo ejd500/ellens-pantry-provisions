@@ -1,0 +1,21 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <h1>Products</h1>
+        <!-- <form action="/products" method="POST" id="products-form"> -->
+        <div id="products-content">
+            <% theProducts.forEach(product => { %>
+                <div class="product-card">
+                    <p>
+                        <%= product.product_name %>
+                    </p>
+                    <p>
+                        Price: <%= product.retail_price %>
+                    </p>
+                </div>
+            <% }) %>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

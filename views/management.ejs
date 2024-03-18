@@ -10,7 +10,7 @@
                 </div>
             <% } %>
             <a href="management/new-product" id="add-new-product">Add New Product</a>
-            
+
             <div id="products-content">
                 <% theProducts.forEach(product => { %>
                     <div class="product-card">
@@ -21,9 +21,8 @@
                         <p>Retail Price: $<%= product.retail_price%></p>
                         <p>Profit: $<%= product.profit %></p>
                         
-                        <button href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Edit</button>
-                        <button href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Delete</button>
-                    </div>
+                        <a href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Edit</a>
+                        <a href="/management/delete/<%=product.product_id%>" class="edit-delete-buttons">Delete</a>                    </div>
                 <% }) %>
             </div>
         </div>

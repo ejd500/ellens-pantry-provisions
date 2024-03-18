@@ -1,6 +1,6 @@
 const dal = require("./pg.thegrocerystore.db");
 
-//get all logins.
+// Get all products
 var getProducts = function() {
   if(DEBUG) console.log("pg.products.dal.getProducts()");
   return new Promise(function(resolve, reject) {
@@ -17,22 +17,25 @@ var getProducts = function() {
   }); 
 };
 
-// var getLoginByLoginId = function(id) {
-//   if(DEBUG) console.log("logins.pg.dal.getLoginByLoginId()");
-//   return new Promise(function(resolve, reject) {
-//     const sql = `SELECT id AS _id, username, password, email, uuid FROM public."Logins" WHERE id = $1`;
-//     dal.query(sql, [id], (err, result) => {
-//       if (err) {
-//         // logging should go here
-//         if(DEBUG) console.log(err);
-//         reject(err);
-//       } else {
-//         resolve(result.rows);
-//       }
-//     }); 
-//   }); 
-// };
+// Get product by product_id
+var getProductByProductId = function(product_id) {
+  if(DEBUG) console.log("pg.products.dal.getProductByProductId()");
+  return new Promise(function(resolve, reject) {
+    const sql = `SELECT product_id, product_name, quantity_on_hand, wholesale_price, retail_price, profit
+    FROM public.products WHERE product_id = $1`;
+    dal.query(sql, [product_id], (err, result) => {
+      if (err) {
+        // logging should go here
+        if(DEBUG) console.log(err);
+        reject(err);
+      } else {
+        resolve(result.rows);
+      }
+    }); 
+  }); 
+};
 
+// INSERT / Add new product
 var addProduct = function(product_id, product_name, quantity_on_hand, wholesale_price, retail_price) {
     if(DEBUG) console.log("pg.products.dal.addProduct()");
     return new Promise(function(resolve, reject) {
@@ -63,24 +66,25 @@ var addProduct = function(product_id, product_name, quantity_on_hand, wholesale_
 //   });
 // };
 
-// var deleteLogin = function(id) {
-//   if(DEBUG) console.log("logins.pg.dal.deleteLogin()");
-//   return new Promise(function(resolve, reject) {
-//     const sql = `DELETE FROM public."Logins" WHERE id = $1;`;
-//     dal.query(sql, [id], (err, result) => {
-//       if (err) {
-//           reject(err);
-//         } else {
-//           resolve(result.rows);
-//         }
-//     }); 
-//   });
-// };
+// DELETE product
+var deleteProduct = function(product_id) {
+  if(DEBUG) console.log("pg.products.dal.deleteProduct()");
+  return new Promise(function(resolve, reject) {
+    const sql = `DELETE FROM public."products" WHERE product_id = $1;`;
+    dal.query(sql, [product_id], (err, result) => {
+      if (err) {
+          reject(err);
+        } else {
+          resolve(result.rows);
+        }
+    }); 
+  });
+};
 
 module.exports = {
   getProducts,
-//   getLoginByLoginId,
+  getProductByProductId,
   addProduct,
 //   patchLogin,
-//   deleteLogin,
+  deleteProduct,
 }

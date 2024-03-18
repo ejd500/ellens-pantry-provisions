@@ -20,14 +20,14 @@ app.use('/products', productsRouter);
 
 const managementRouter = require('./routes/management')
 app.use('/management', managementRouter);
-// app.use('/new-product', managementRouter);
 
-// anything beginning with "/api" will go into this
 const apiRouter = require('./routes/api/api.js')
 app.use('/api', apiRouter);
 
-app.use((req, res) => {
-  res.status(404).render('404');
+
+app.use((err, req, res, next) => {
+    if (DEBUG) console.error(err);
+    res.status(500).render('error', {error: err});
 });
 
 app.listen(PORT, () => {

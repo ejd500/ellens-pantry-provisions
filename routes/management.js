@@ -42,4 +42,34 @@ router.post('/new-product', async (req, res) => {
     } 
   });
 
+router.get('/delete/:product_id', async (req, res) => {
+    const productId = req.params.product_id;
+    const productByID = await productsDal.getProductByProductId(productId);
+    if (DEBUG) console.log(productByID);
+
+    const productName = productByID[0].product_name;
+    const quantityOnHand = productByID[0].quantity_on_hand;
+    const wholesalePrice = productByID[0].wholesale_price;
+    const retailPrice = productByID[0].retail_price;
+    const profit = productByID[0].profit;
+
+    if (DEBUG) console.log('product.Delete : ' + productName + " " + productId);
+    res.render('delete-product.ejs', {product_id: productId, product_name: productName, quantity_on_hand: quantityOnHand, wholesale_price: wholesalePrice, retail_price: retailPrice, profit: profit});
+});
+
+
+router.delete('/delete/:product_id', async (req, res) => {
+    const productByID = await productsDal.getProductByProductId(req.params.product_id);
+    const productName = productByID[0].product_name;
+    if(DEBUG) console.log('product.DELETE: ' + productName + " " + req.params.product_id);
+    try {
+        await productsDal.deleteProduct(req.params.product_id);
+        res.redirect('/management?success=Product deleted successfully!')
+    } catch (err){
+        if (DEBUG) console.log(err);
+        res.render('error', { error: err});
+        // log this error to an error log file. 
+    }
+  });
+
 module.exports = router

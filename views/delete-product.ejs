@@ -1,0 +1,29 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <h1>Are you sure you want to delete this product?</h1>
+        <form action="/management/delete/<%= product_id %>?_method=DELETE" method="POST" id="delete-form">
+            <label >Product ID: 
+                <input type="text" id="product_id" name="product_id" value="<%= product_id %>" readonly>
+            </label>
+            <label>Product Name: 
+                <input type="text" id="product_name" name="product_name" value="<%= product_name %>" readonly>
+            </label>
+            <label>Quantity:
+                <input type="text" id="quantity_on_hand" name="quantity_on_hand" value="<%= quantity_on_hand %>" readonly>
+            </label>
+            <label>Wholesale Price: $
+                <input type="text" id="wholesale_price" name="wholesale_price" value="<%= wholesale_price %>" readonly>
+            </label>
+            <label>Retail Price: $
+                <input type="text" id="retail_price" name="retail_price" value="<%= retail_price %>" readonly>
+            </label>
+            <label>Profit: $
+                <input type="text" id="profit" name="profit" value="<%= profit %>" readonly>
+            </label>
+            <button>DELETE</button>
+        </form>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

@@ -5,30 +5,32 @@ const router = express.Router();
 const productsDal = require('../services/pg.products.dal.js')
 
 router.get('/', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /management');
 //   const theProducts = [
 //       {product_id: '1', product_name: 'example', quantity_on_hand: 'example', wholesale_price: 'example', retail_price: 'example', profit: 'example'},
 //       {product_id: '2', product_name: 'example', quantity_on_hand: 'example', wholesale_price: 'example', retail_price: 'example', profit: 'example'},
 //       {product_id: '3', product_name: 'example', quantity_on_hand: 'example', wholesale_price: 'example', retail_price: 'example', profit: 'example'},
 //       {product_id: '4', product_name: 'example', quantity_on_hand: 'example', wholesale_price: 'example', retail_price: 'example', profit: 'example'},
 //   ];
-  try {
+    try {
         const success = req.query.success;
         let theProducts = await productsDal.getProducts(); 
         if(DEBUG) console.log(theProducts);
         res.render('management.ejs', {theProducts, success: success});
-  } catch {
+    } catch {
         res.render('503');
-  }
+    }
 });
 
 router.get('/new-product', async (req, res) => {
-      try { 
-            if(DEBUG) console.log("add-new-product-page");
-            res.render('new-product.ejs');
-      } catch {
-            res.render('503');
-      }
-    });
+    if(DEBUG) console.log('ROUTE: /management' + req.url);
+    try { 
+        if(DEBUG) console.log("add-new-product-page");
+        res.render('new-product.ejs');
+    } catch {
+        res.render('503');
+    }
+});
 
 router.post('/new-product', async (req, res) => {
     if(DEBUG) console.log("posting-new-product");
@@ -43,6 +45,7 @@ router.post('/new-product', async (req, res) => {
   });
 
 router.get('/delete/:product_id', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /management' + req.url);
     const productId = req.params.product_id;
     const productByID = await productsDal.getProductByProductId(productId);
     if (DEBUG) console.log(productByID);
@@ -59,6 +62,7 @@ router.get('/delete/:product_id', async (req, res) => {
 
 
 router.delete('/delete/:product_id', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /management' + req.url);
     const productByID = await productsDal.getProductByProductId(req.params.product_id);
     const productName = productByID[0].product_name;
     if(DEBUG) console.log('product.DELETE: ' + productName + " " + req.params.product_id);
@@ -73,6 +77,7 @@ router.delete('/delete/:product_id', async (req, res) => {
   });
 
 router.get('/edit/:product_id', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /management' + req.url);
     const productId = req.params.product_id;
     const productByID = await productsDal.getProductByProductId(productId);
     if (DEBUG) console.log(productByID);
@@ -88,6 +93,7 @@ router.get('/edit/:product_id', async (req, res) => {
 });
 
 router.patch('/edit/:product_id', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /management' + req.url);
     if(DEBUG) console.log('product.PATCH: ' + req.body.product_name + " " + req.params.product_id);
     try {
         await productsDal.patchProduct(req.params.product_id, req.body.product_id, req.body.product_name, req.body.quantity_on_hand, req.body.wholesale_price, req.body.retail_price)

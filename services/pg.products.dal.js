@@ -4,7 +4,7 @@ const dal = require("./pg.thegrocerystore.db");
 var getProducts = function() {
   if(DEBUG) console.log("pg.products.dal.getProducts()");
   return new Promise(function(resolve, reject) {
-    const sql = `SELECT * FROM public.products ORDER BY quantity_on_hand DESC `
+    const sql = `SELECT * FROM public.products ORDER BY product_id DESC `
     dal.query(sql, [], (err, result) => {
       if (err) {
         // logging should go here
@@ -52,19 +52,19 @@ var addProduct = function(product_id, product_name, quantity_on_hand, wholesale_
   
 };
 
-// var patchLogin = function(id, username, password, email) {
-//   if(DEBUG) console.log("logins.pg.dal.patchLogin()");
-//   return new Promise(function(resolve, reject) {
-//     const sql = `UPDATE public."Logins" SET username=$2, password=$3, email=$4 WHERE id=$1;`;
-//     dal.query(sql, [id, username, password, email], (err, result) => {
-//       if (err) {
-//           reject(err);
-//         } else {
-//           resolve(result.rows);
-//         }
-//     }); 
-//   });
-// };
+var patchProduct = function(old_product_id, new_product_id, product_name, quantity_on_hand, wholesale_price, retail_price) {
+  if(DEBUG) console.log("pg.products.dal.patchProduct()");
+  return new Promise(function(resolve, reject) {
+    const sql = `UPDATE public.products SET product_id=$2, product_name=$3, quantity_on_hand=$4, wholesale_price=$5, retail_price=$6  WHERE product_id=$1`;
+    dal.query(sql, [old_product_id, new_product_id, product_name, quantity_on_hand, wholesale_price, retail_price], (err, result) => {
+      if (err) {
+          reject(err);
+        } else {
+          resolve(result.rows);
+        }
+    }); 
+  });
+};
 
 // DELETE product
 var deleteProduct = function(product_id) {
@@ -85,6 +85,6 @@ module.exports = {
   getProducts,
   getProductByProductId,
   addProduct,
-//   patchLogin,
+  patchProduct,
   deleteProduct,
 }

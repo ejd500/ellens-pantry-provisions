@@ -2,10 +2,8 @@
     <%- include('./partials/head.ejs') %>
     <body>
         <%- include('./partials/header.ejs') %>
-        <div id="error-message">
-            <h2 id="error"><%= error %></h2>
-            <a href="#" onclick="window.history.back();">Try Again</a>
-        </div>
+        <h1>Welcome to the API Homepage</h1>
+        <a href="/api/products">Click Here for Product Listing in JSON Format</a>
     </body>
     <%- include('./partials/footer.ejs') %>
 </html>

@@ -20,9 +20,10 @@
                         <p>Wholesale Price: $<%= product.wholesale_price %></p>
                         <p>Retail Price: $<%= product.retail_price%></p>
                         <p>Profit: $<%= product.profit %></p>
-                        
-                        <a href="/management/<%=product.product_id%>/edit?product_name=<%=product.product_name%>&quantity_on_hand=<%=product.quantity_on_hand%>" class="edit-delete-buttons">Edit</a>
-                        <a href="/management/delete/<%=product.product_id%>" class="edit-delete-buttons">Delete</a>                    </div>
+                        <div id="empty"></div>
+                        <a href="/management/edit/<%=product.product_id%>" class="edit-delete-buttons">Edit</a>
+                        <a href="/management/delete/<%=product.product_id%>" class="edit-delete-buttons">Delete</a>                    
+                    </div>
                 <% }) %>
             </div>
         </div>

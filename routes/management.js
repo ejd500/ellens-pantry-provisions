@@ -72,4 +72,34 @@ router.delete('/delete/:product_id', async (req, res) => {
     }
   });
 
+router.get('/edit/:product_id', async (req, res) => {
+    const productId = req.params.product_id;
+    const productByID = await productsDal.getProductByProductId(productId);
+    if (DEBUG) console.log(productByID);
+
+    const productName = productByID[0].product_name;
+    const quantityOnHand = productByID[0].quantity_on_hand;
+    const wholesalePrice = productByID[0].wholesale_price;
+    const retailPrice = productByID[0].retail_price;
+    const profit = productByID[0].profit;
+
+    if (DEBUG) console.log('product.Update : ' + productName + " " + productId);
+    res.render('update-product.ejs', {product_id: productId, product_name: productName, quantity_on_hand: quantityOnHand, wholesale_price: wholesalePrice, retail_price: retailPrice, profit: profit});
+});
+
+router.patch('/edit/:product_id', async (req, res) => {
+    if(DEBUG) console.log('product.PATCH: ' + req.body.product_name + " " + req.params.product_id);
+    try {
+        await productsDal.patchProduct(req.params.product_id, req.body.product_id, req.body.product_name, req.body.quantity_on_hand, req.body.wholesale_price, req.body.retail_price)
+    //     await loginsDal.patchLogin(req.params.id, req.body.username, req.body.password, req.body.email);
+        res.redirect('/management?success=Product was successfully updated!')
+    
+    } catch (err){
+        if (DEBUG) console.log(err);
+        res.render('error', { error: err});
+    }
+
+  });
+  
+
 module.exports = router
